@@ -11,15 +11,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{C5F0A843-8E31-4D01-97E8-0A8AA116673F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thunder.Application", "Thunder.Application\Thunder.Application.csproj", "{C63EFB25-CDE3-4244-8C65-400104565498}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thunder.Application", "Thunder.Application\Thunder.Application.csproj", "{C63EFB25-CDE3-4244-8C65-400104565498}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thunder.Domain", "Thunder.Domain\Thunder.Domain.csproj", "{9DE00459-AD80-4902-92D5-EB7CBB3AB1F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thunder.Domain", "Thunder.Domain\Thunder.Domain.csproj", "{9DE00459-AD80-4902-92D5-EB7CBB3AB1F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thunder.Infrastructure", "Thunder.Infrastructure\Thunder.Infrastructure.csproj", "{D1A23387-6C32-4DCA-83B4-B7CA1FA498E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thunder.Infrastructure", "Thunder.Infrastructure\Thunder.Infrastructure.csproj", "{D1A23387-6C32-4DCA-83B4-B7CA1FA498E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thunder.Persistence", "Thunder.Persistence\Thunder.Persistence.csproj", "{0647C454-416A-4E99-9215-94F68311ECD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thunder.Persistence", "Thunder.Persistence\Thunder.Persistence.csproj", "{0647C454-416A-4E99-9215-94F68311ECD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thunder.WebAPI", "Thunder.WebAPI\Thunder.WebAPI.csproj", "{FE23B2F0-B9A2-474E-8074-D4A28329A164}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thunder.WebAPI", "Thunder.WebAPI\Thunder.WebAPI.csproj", "{FE23B2F0-B9A2-474E-8074-D4A28329A164}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thunder.WebAppUI", "Thunder.WebAppUI\Thunder.WebAppUI\Thunder.WebAppUI.csproj", "{5037D923-10BD-4C30-96F2-34F5A980C19F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thunder.WebAppUI.Client", "Thunder.WebAppUI\Thunder.WebAppUI.Client\Thunder.WebAppUI.Client.csproj", "{CEB82121-FADE-44E0-845A-88F774AE5D1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +51,14 @@ Global
 		{FE23B2F0-B9A2-474E-8074-D4A28329A164}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE23B2F0-B9A2-474E-8074-D4A28329A164}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE23B2F0-B9A2-474E-8074-D4A28329A164}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5037D923-10BD-4C30-96F2-34F5A980C19F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5037D923-10BD-4C30-96F2-34F5A980C19F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5037D923-10BD-4C30-96F2-34F5A980C19F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5037D923-10BD-4C30-96F2-34F5A980C19F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEB82121-FADE-44E0-845A-88F774AE5D1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEB82121-FADE-44E0-845A-88F774AE5D1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEB82121-FADE-44E0-845A-88F774AE5D1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEB82121-FADE-44E0-845A-88F774AE5D1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +72,8 @@ Global
 		{D1A23387-6C32-4DCA-83B4-B7CA1FA498E9} = {C28DE6C9-F884-4248-87DF-A41E69B5CDDA}
 		{0647C454-416A-4E99-9215-94F68311ECD0} = {C28DE6C9-F884-4248-87DF-A41E69B5CDDA}
 		{FE23B2F0-B9A2-474E-8074-D4A28329A164} = {C5F0A843-8E31-4D01-97E8-0A8AA116673F}
+		{5037D923-10BD-4C30-96F2-34F5A980C19F} = {C5F0A843-8E31-4D01-97E8-0A8AA116673F}
+		{CEB82121-FADE-44E0-845A-88F774AE5D1E} = {C5F0A843-8E31-4D01-97E8-0A8AA116673F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8F739255-1B56-4649-AFF9-A04E09602909}
