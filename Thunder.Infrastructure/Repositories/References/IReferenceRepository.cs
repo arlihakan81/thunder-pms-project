@@ -6,6 +6,8 @@ namespace Thunder.Infrastructure.Repositories.References
 	public interface IReferenceRepository : IRepository<Reference>	
 	{
 		Reference GetReferenceByUser(Guid userId);
+		bool EmailAddressCannotDuplicateWhenInserted(string email);
+		bool EmailAddressCannotDuplicateWhenUpdated(Guid id, string email);
 
 	}
 }

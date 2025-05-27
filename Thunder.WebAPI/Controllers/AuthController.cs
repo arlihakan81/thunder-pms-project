@@ -27,13 +27,15 @@ namespace Thunder.WebAPI.Controllers
 
 			if (string.IsNullOrWhiteSpace(model.Username) || string.IsNullOrWhiteSpace(model.Password))
 			{
+				ModelState.AddModelError("", "Username and password cannot be empty.");
 				return BadRequest("Username and password cannot be empty.");
 			}
 
 			model.Password = hasher.Hash(model.Password);
 			if (!authService.IsAuthenticated(model))
 			{
-				return Unauthorized("Invalid username or password.");
+                ModelState.AddModelError("", "Invalid username or password.");
+                return Unauthorized("Invalid username or password.");
 			}
 
 			var user = authService.GetUserByUsername(model.Username);
@@ -59,7 +61,7 @@ namespace Thunder.WebAPI.Controllers
 			return Ok("You logged in successfully");
 		}
 
-		[HttpPost("Logout")]
+		[HttpGet("Logout")]
 		public async Task<ActionResult> LogoutAsync()
 		{
 			await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
@@ -73,11 +75,13 @@ namespace Thunder.WebAPI.Controllers
 			{
 				if (authService.UsernameCannotDuplicateWhenRegistered(model.Username))
 				{
+					ModelState.AddModelError(model.Username, "User name is already taken");
 					return BadRequest($"Username '{model.Username}' is already taken.");
 				}
 
 				if (authService.EmailCannotDuplicateWhenRegistered(model.Email))
 				{
+					ModelState.AddModelError(model.Email, "Email address is already registered");
 					return BadRequest($"Email '{model.Email}' is already registered.");
 				}
 

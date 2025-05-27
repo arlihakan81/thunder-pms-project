@@ -7,7 +7,7 @@
 
     <main>
         <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+            <button @onclick="(() => Handle())">About</button>
         </div>
 
         <article class="content px-4">
@@ -21,3 +21,19 @@
     <a href="" class="reload">Reload</a>
     <a class="dismiss">🗙</a>
 </div>
+
+
+@code {
+
+    [Inject]
+    public HttpClient Client { get; set; }
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+    public async Task Handle()
+    {
+        Client.BaseAddress = new Uri("https://localhost:7001/api");
+        await Client.GetAsync(Client.BaseAddress+"/Auth/Logout");
+        NavigationManager.NavigateTo("/login", true);
+    }
+}

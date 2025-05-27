@@ -1,0 +1,16 @@
+﻿@page "/login"
+@using Thunder.WebAppUI.Components.Pages.Auth
+@rendermode InteractiveServer
+
+<PageTitle>Login</PageTitle>
+
+
+<EditForm Model="Model">
+    <InputText class="form-control" @bind-Value="Model.Username"></InputText>
+    <ValidationMessage For="@(() => Model.Username)" />
+    <input type="password" class="form-control" @bind="Model.Password" />
+    <ValidationMessage For="@(() => Model.Password)" />
+    <button class="btn btn-link" @onclick="(() => Handle(Model))">Login</button>
+</EditForm>
+
+

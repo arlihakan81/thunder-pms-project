@@ -8,7 +8,17 @@ namespace Thunder.Infrastructure.Repositories.References
 	{
 		private readonly AppDbContext context = context;
 
-		public Reference GetReferenceByUser(Guid userId)
+        public bool EmailAddressCannotDuplicateWhenInserted(string email)
+        {
+            return context.References.Any(r => r.EmailAddress.ToLower().Trim() == email.ToLower().Trim());
+        }
+
+        public bool EmailAddressCannotDuplicateWhenUpdated(Guid id, string email)
+        {
+            return context.References.Any(r => r.EmailAddress.ToLower().Trim() == email.ToLower().Trim() && r.Id != id);
+        }
+
+        public Reference GetReferenceByUser(Guid userId)
 		{
 			return context.References.FirstOrDefault(r => r.Users!.Any(u => u.Id == userId))!;
 		}

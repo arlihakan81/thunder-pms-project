@@ -54,9 +54,15 @@ namespace Thunder.WebAPI.Controllers
 		[HttpPost]
 		public async Task<ActionResult> CreateReferenceAsync([FromBody] CreateReferenceDto createReferenceDto)
 		{
-			if (createReferenceDto == null)
+			if (!ModelState.IsValid)
 			{
 				return BadRequest("Reference data is null");
+			}
+
+			if(referenceRepository.EmailAddressCannotDuplicateWhenInserted(createReferenceDto.EmailAddress))
+			{
+				ModelState.AddModelError(createReferenceDto.EmailAddress, "Email address already exists");
+				return BadRequest($"Reference email address {createReferenceDto.EmailAddress} already exists");
 			}
 
 			var reference = mapper.Map<CreateReferenceDto, Reference>(createReferenceDto);
@@ -69,12 +75,18 @@ namespace Thunder.WebAPI.Controllers
 		[HttpPut("{id}")]
 		public async Task<ActionResult> UpdateReferenceAsync(Guid id, [FromBody] UpdateReferenceDto updateReferenceDto)
 		{
-			if (updateReferenceDto == null)
-			{
-				return BadRequest("Reference data is null");
-			}
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Reference data is null");
+            }
 
-			var reference = referenceRepository.GetById(id);
+            if (referenceRepository.EmailAddressCannotDuplicateWhenUpdated(id, updateReferenceDto.EmailAddress))
+            {
+                ModelState.AddModelError(updateReferenceDto.EmailAddress, "Email address already exists");
+                return BadRequest($"Reference email address {updateReferenceDto.EmailAddress} already exists");
+            }
+
+            var reference = referenceRepository.GetById(id);
 			if (reference == null)
 			{
 				return NotFound($"No reference found with Id {id}");

@@ -103,19 +103,21 @@ namespace Thunder.WebAPI.Controllers
 		[HttpPost]
 		public async Task<ActionResult> CreateUserAsync(CreateUserDto createUserDto)
 		{
-			if (createUserDto == null)
+			if (!ModelState.IsValid)
 			{
 				return BadRequest("Invalid user data.");
 			}
 
 			if (userRepository.NameCannotDuplicateWhenInserted(createUserDto.Name))
 			{
+				ModelState.AddModelError(createUserDto.Name, "User name already exists");
 				return BadRequest($"User with name {createUserDto.Name} already exists.");
 			}
 
 			if(userRepository.EmailCannotDuplicateWhenInserted(createUserDto.Email!) && !string.IsNullOrEmpty(createUserDto.Email))
 			{
-				return BadRequest($"User with email {createUserDto.Email} already exists.");
+                ModelState.AddModelError(createUserDto.Email, "Email address already exists");
+                return BadRequest($"User with email {createUserDto.Email} already exists.");
 			}
 
 			var user = mapper.Map<CreateUserDto, User>(createUserDto);
@@ -129,7 +131,7 @@ namespace Thunder.WebAPI.Controllers
 		[HttpPut("{id}")]
 		public async Task<ActionResult> UpdateUserAsync(Guid id, UpdateUserDto updateUserDto)
 		{
-			if (updateUserDto == null)
+			if (!ModelState.IsValid)
 			{
 				return BadRequest("Invalid user data.");
 			}
@@ -142,11 +144,13 @@ namespace Thunder.WebAPI.Controllers
 
 			if (userRepository.NameCannotDuplicateWhenUpdated(id, updateUserDto.Name))
 			{
+				ModelState.AddModelError(updateUserDto.Name, "User name already exists");
 				return BadRequest($"User with name {updateUserDto.Name} already exists.");
 			}
 
 			if (userRepository.EmailCannotDuplicateWhenUpdated(id, updateUserDto.Email!) && !string.IsNullOrEmpty(updateUserDto.Email))
 			{
+				ModelState.AddModelError(updateUserDto.Email, "Email address already exists");
 				return BadRequest($"User with email {updateUserDto.Email} already exists.");
 			}
 
