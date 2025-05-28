@@ -17,22 +17,21 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
-	options.IgnoreObsoleteActions();
-	options.IgnoreObsoleteProperties();
-	options.CustomSchemaIds(type => type.FullName);
+    options.IgnoreObsoleteActions();
+    options.IgnoreObsoleteProperties();
+    options.CustomSchemaIds(type => type.FullName);    
 });
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-	.AddCookie(options =>
-	{
-		options.LoginPath = "/Auth/Login";
-		options.LogoutPath = "/Auth/Logout";
-		options.AccessDeniedPath = "/Auth/AccessDenied";
-		options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
-		options.SlidingExpiration = true;
-		options.Cookie.HttpOnly = true;
-		options.Cookie.Name = "thunder-pms-project";
-	});
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/login";
+        options.LogoutPath = "/logout";
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+        options.SlidingExpiration = true;
+        options.Cookie.HttpOnly = true;
+        options.Cookie.Name = "thunder-pms-project";
+    });
 
 builder.Services.AddDbContext<AppDbContext>();
 builder.Services.AddScoped<PasswordHasher>();

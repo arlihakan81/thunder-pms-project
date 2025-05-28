@@ -1,12 +1,15 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Thunder.Application.Dto.References;
 using Thunder.Domain.Entities;
+using Thunder.Domain.Enums.Users;
 using Thunder.Infrastructure.Repositories.References;
 using Thunder.Persistence.AutoMapper;
 
 namespace Thunder.WebAPI.Controllers
 {
+	[Authorize]
 	[Route("api/[controller]")]
 	[ApiController]
 	public class ReferencesController(IReferenceRepository referenceRepository, IMapper mapper) : ControllerBase

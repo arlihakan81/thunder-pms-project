@@ -23,7 +23,7 @@ namespace Thunder.WebAppUI.Components.Pages.Auth
             }
             else
             {
-                Console.WriteLine("An handled error occured");
+                Console.WriteLine("An unhandled error occured");
             }
         }
 
